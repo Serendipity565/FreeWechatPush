@@ -1,0 +1,6 @@
+users:
+  - name: "test"
+    month: "October"
+    day: 20
+    place: "测试"
+    openid: ""
