@@ -37,6 +37,7 @@ func SendWeather(user data.User, accessToken string) error {
 	if len(weatherDetails) == 0 {
 		return fmt.Errorf("filed to get find city")
 	}
+	tempRange := weatherDetails["lowTemp"] + " — " + weatherDetails["highTemp"]
 
 	body := map[string]interface{}{
 		"touser":      user.GetOpenid(),
@@ -53,10 +54,13 @@ func SendWeather(user data.User, accessToken string) error {
 				"value": weatherDetails["weather"],
 			},
 			"temp": {
-				"value": weatherDetails["lowTemp"] + " —— " + weatherDetails["highTemp"],
+				"value": tempRange,
 			},
 			"wind_dir": {
-				"value": weatherDetails["wind"],
+				"value": weatherDetails["wind_dir"],
+			},
+			"wind_str": {
+				"value": weatherDetails["wind_str"],
 			},
 			"birthday": {
 				"value": birthdaySentence,
