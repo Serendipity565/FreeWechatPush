@@ -1,8 +1,8 @@
-package main
+package sever
 
 import (
 	"FreeWechatPush/data"
-	"FreeWechatPush/service"
+	"FreeWechatPush/service/weather"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -25,12 +25,12 @@ func timeDifference(birthday time.Time) string {
 
 func SendWeather(user data.User, accessToken string) error {
 	today := time.Now().Format("2024年01月02日")
-	sentence, err := service.GetDailyLove()
+	sentence, err := weather.GetDailyLove()
 	if err != nil {
 		return err
 	}
 	birthdaySentence := timeDifference(user.GetBirthday())
-	weatherDetails, err := service.GetWeather(user.GetPlace())
+	weatherDetails, err := weather.GetWeather(user.GetPlace())
 	if err != nil {
 		return err
 	}

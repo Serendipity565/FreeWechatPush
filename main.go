@@ -2,7 +2,8 @@ package main
 
 import (
 	"FreeWechatPush/data"
-	"FreeWechatPush/service"
+	"FreeWechatPush/service/login"
+	"FreeWechatPush/sever"
 	"fmt"
 )
 
@@ -14,7 +15,7 @@ var (
 func main() {
 	var admin data.Admin
 	admin = data.CreateAdmin(adminFile)
-	token, err := service.GetAccessToken(admin)
+	token, err := login.GetAccessToken(admin)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -22,7 +23,7 @@ func main() {
 
 	users := data.ReadFromConfig(userFile)
 	for _, user := range users {
-		err = SendWeather(user, token)
+		err = sever.SendWeather(user, token)
 		if err != nil {
 			fmt.Println(err)
 			return
