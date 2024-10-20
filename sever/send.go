@@ -81,13 +81,16 @@ func SendWeather(user data.User, accessToken string) error {
 	}
 
 	// 用处查看发送的信息
-	fmt.Println(user.GetName())
-	for key, value := range weatherDetails {
-		fmt.Printf("%s : %s ", key, value)
-	}
-	fmt.Println()
-	fmt.Println(sentence)
-	fmt.Println(birthdaySentence)
+	func() {
+		fmt.Println(user.GetName())
+		for key, value := range weatherDetails {
+			fmt.Printf("%s : %s ", key, value)
+		}
+		fmt.Println()
+		fmt.Println(sentence)
+		fmt.Println(birthdaySentence)
+		fmt.Println()
+	}()
 
 	defer resp.Body.Close()
 	return nil

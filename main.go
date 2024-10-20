@@ -12,7 +12,7 @@ var (
 	adminFile = "admin.yaml"
 )
 
-func main() {
+func solve() {
 	var admin data.Admin
 	admin = data.CreateAdmin(adminFile)
 	token, err := login.GetAccessToken(admin)
@@ -28,12 +28,9 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println()
-		//weatherDetails, err := service.GetWeather(user.GetPlace())
-		//if err != nil {
-		//	fmt.Println(err)
-		//}
-		//fmt.Println(weatherDetails["lowTemp"] + " —— " + weatherDetails["highTemp"])
-		//fmt.Println(weatherDetails)
 	}
+}
+
+func main() {
+	solve()
 }
