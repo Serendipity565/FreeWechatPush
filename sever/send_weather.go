@@ -24,7 +24,7 @@ func timeDifference(birthday time.Time) string {
 }
 
 func SendWeather(user data.User, accessToken string) error {
-	today := time.Now().Format("2024年01月02日")
+	today := time.Now().Format("2006年01月02日")
 	sentence, err := weather.GetDailyLove()
 	if err != nil {
 		return err
