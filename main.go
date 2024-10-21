@@ -26,7 +26,6 @@ func solve() {
 		err = sever.SendWeather(user, token)
 		if err != nil {
 			fmt.Println(err)
-			return
 		}
 	}
 }

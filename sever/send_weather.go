@@ -38,6 +38,14 @@ func SendWeather(user data.User, accessToken string) error {
 		return fmt.Errorf("filed to get find city")
 	}
 	tempRange := weatherDetails["lowTemp"] + " — " + weatherDetails["highTemp"]
+	maxLength := 15
+
+	parts := weather.SplitSentence(sentence, maxLength)
+
+	note := parts[0]
+	note1 := parts[1]
+	note2 := parts[2]
+	note3 := parts[3]
 
 	body := map[string]interface{}{
 		"touser":      user.GetOpenid(),
@@ -65,8 +73,17 @@ func SendWeather(user data.User, accessToken string) error {
 			"birthday": {
 				"value": birthdaySentence,
 			},
-			"today_note": {
-				"value": sentence,
+			"note": {
+				"value": note,
+			},
+			"note1": {
+				"value": note1,
+			},
+			"note2": {
+				"value": note2,
+			},
+			"note3": {
+				"value": note3,
 			},
 		},
 	}

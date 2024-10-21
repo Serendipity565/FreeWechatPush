@@ -63,3 +63,18 @@ func GetDailyLove() (string, error) {
 	}
 	return "", fmt.Errorf("unable to get daily love")
 }
+
+func SplitSentence(sentence string, maxLength int) []string {
+	var parts []string
+	for len(sentence) > maxLength {
+		parts = append(parts, sentence[:maxLength])
+		sentence = sentence[maxLength:]
+	}
+	parts = append(parts, sentence)
+
+	// 保持长度为 4
+	for len(parts) < 4 {
+		parts = append(parts, "")
+	}
+	return parts
+}

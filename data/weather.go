@@ -8,5 +8,5 @@ var (
 		"成都": "101270101",
 		"测试": "0",
 	}
-	WeatherTempleId = "rr8pKW1dyRQ5aSQPnG-xSTzASp2m2LHyE1UIzLQnsf8"
+	WeatherTempleId = "Ctv6psWLp-ZYv9X2Caynvyq5SIT9TiHE9sv8HX_HF-U"
 )
