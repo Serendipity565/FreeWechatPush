@@ -41,9 +41,9 @@
 1. user里的name字段不重要，可以随便写
 2. 这里的月份要用英文
 
-![img4](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img4.png)
-
 然后新增测试模板获得 template_id（模板ID）
+
+![img4](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img4.png)
 
 这是我的配置模板，经供参考，可以根据需求自己定制
 
