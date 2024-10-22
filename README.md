@@ -66,5 +66,6 @@
 
 1. 关于城市ID，如果 `data\weather.go` 中没有自己想要的城市，只需要前往[天气网](https://www.weather.com.cn/)中搜索对应的城市，将相应的城市ID填入即可
 
-![img7](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img8.png)
+![img8](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img8.png)
+
 ![img7](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img9.png)
