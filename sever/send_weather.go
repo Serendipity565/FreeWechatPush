@@ -40,7 +40,15 @@ func SendWeather(user data.User, accessToken string) error {
 	tempRange := weatherDetails["lowTemp"] + " — " + weatherDetails["highTemp"]
 	maxLength := 15
 
+	// sentence = "忽然想问你一些秋天的事情，比如桂花的花期是多少天，天气冷了要添几件长袖，还有，能不能趁着秋天喜欢我"
+
 	parts := weather.SplitSentence(sentence, maxLength)
+
+	if len(parts) < 4 {
+		for len(parts) < 4 {
+			parts = append(parts, "")
+		}
+	}
 
 	note := parts[0]
 	note1 := parts[1]

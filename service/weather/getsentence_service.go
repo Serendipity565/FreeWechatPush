@@ -6,6 +6,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
 	"strings"
+	"unicode/utf8"
 )
 
 // 不知道为什么用不了，每次都是一同个句子
@@ -66,15 +67,32 @@ func GetDailyLove() (string, error) {
 
 func SplitSentence(sentence string, maxLength int) []string {
 	var parts []string
-	for len(sentence) > maxLength {
-		parts = append(parts, sentence[:maxLength])
-		sentence = sentence[maxLength:]
-	}
-	parts = append(parts, sentence)
+	n := len(sentence)
 
-	// 保持长度为 4
-	for len(parts) < 4 {
-		parts = append(parts, "")
+	// 如果句子长度小于或等于最大长度，直接返回
+	if n <= maxLength {
+		return []string{sentence}
 	}
+
+	start := 0
+	for i := 0; i < 4; i++ {
+		end := start
+		count := 0
+
+		// 计算当前部分的字符数
+		for end < n && count < maxLength {
+			_, size := utf8.DecodeRuneInString(sentence[end:])
+			end += size
+			count++
+		}
+
+		parts = append(parts, sentence[start:end])
+		start = end
+
+		if start >= n { // 防止多余的循环
+			break
+		}
+	}
+
 	return parts
 }
