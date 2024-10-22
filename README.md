@@ -24,24 +24,24 @@
 
 首先是 appID 和 appsecret ，如图，然后我们需要在代码的 `admin.yaml` 中对应天上这两个值
 
-![img2](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img2.jpg)
+![img2](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img2.png)
 
-![img5](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img5.jpg)
+![img5](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img5.png)
 
 接下来是 openId ，也就是为微信号（不是日常使用的那个），想让谁收消息，就让谁用微信扫下面的二维码关注自己创建的测试号，然后对应的用户就会出现在用户列表里，会有一个昵称和微信号，这里的微信号才是我们需要用到的，也就是 openId
 
-![img3](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img3.jpg)
+![img3](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img3.png)
 
 接着我们进入 `users.yaml` 中加入用户的姓名，生日月份、日期以及对应的 openID
 
-![img6](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img6.jpg)
+![img6](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img6.png)
 
 **说明：**
 
 1. user里的name字段不重要，可以随便写
 2. 这里的月份要用英文
 
-![img4](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img4.jpg)
+![img4](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img4.png)
 
 然后新增测试模板获得 template_id（模板ID）
 
@@ -58,6 +58,6 @@
 😊对你说的话：{{note.DATA}}{{note1.DATA}}{{note2.DATA}}{{note3.DATA}}
 ```
 
-![img7](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img7.jpg)
+![img7](https://github.com/Serendipity565/FreeWechatPush/blob/main/img/img7.png)
 
 接着在 `data\weather.go` 中将 `WeatherTempleId` 改成自己的 template_id 即可
