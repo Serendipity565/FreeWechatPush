@@ -32,8 +32,9 @@ func solve() {
 }
 
 func waitUntilEight() {
-	now := time.Now()
-	next := time.Date(now.Year(), now.Month(), now.Day(), 8, 0, 0, 0, now.Location())
+	cst := time.FixedZone("CST", 8*3600)
+	now := time.Now().In(cst)
+	next := time.Date(now.Year(), now.Month(), now.Day(), 8, 0, 0, 0, cst)
 	if now.After(next) {
 		next = next.Add(24 * time.Hour)
 	}
