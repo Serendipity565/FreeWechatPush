@@ -11,20 +11,22 @@ import (
 )
 
 func timeDifference(birthday time.Time) string {
-	today := time.Now()
-	today = time.Date(today.Year(), today.Month(), today.Day(), 0, 0, 0, 0, today.Location())
+	cst := time.FixedZone("CST", 8*3600)
+	today := time.Now().In(cst)
+	today = time.Date(today.Year(), today.Month(), today.Day(), 0, 0, 0, 0, cst)
 	if today.Equal(birthday) {
 		return "今天就是你的生日啦!生日快乐!"
 	}
 	if today.After(birthday) {
-		birthday = time.Date(today.Year()+1, birthday.Month(), birthday.Day(), 0, 0, 0, 0, today.Location())
+		birthday = time.Date(today.Year()+1, birthday.Month(), birthday.Day(), 0, 0, 0, 0, cst)
 	}
 	delta := birthday.Sub(today)
 	return fmt.Sprintf("还有 %d 天", int(delta.Hours()/24))
 }
 
 func SendWeather(user data.User, accessToken string) error {
-	today := time.Now().Format("2006年01月02日")
+	cst := time.FixedZone("CST", 8*3600)
+	today := time.Now().In(cst).Format("2006年01月02日")
 	sentence, err := weather.GetDailyLove()
 	if err != nil {
 		return err
