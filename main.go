@@ -5,6 +5,7 @@ import (
 	"FreeWechatPush/service/login"
 	"FreeWechatPush/sever"
 	"fmt"
+	"time"
 )
 
 var (
@@ -30,6 +31,18 @@ func solve() {
 	}
 }
 
+func waitUntilEight() {
+	now := time.Now()
+	next := time.Date(now.Year(), now.Month(), now.Day(), 8, 0, 0, 0, now.Location())
+	if now.After(next) {
+		next = next.Add(24 * time.Hour)
+	}
+	time.Sleep(time.Until(next))
+}
+
 func main() {
-	solve()
+	for {
+		waitUntilEight()
+		solve()
+	}
 }

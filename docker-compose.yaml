@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  hello:
+    image: "hello:v1"
+    container_name: "haha"
+    restart: always
+    volumes:
+      - "./users.yaml:/hello/users.yaml"
+      - "./admin.yaml:/hello/admin.yaml"
