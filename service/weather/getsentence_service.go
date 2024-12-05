@@ -3,48 +3,50 @@ package weather
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
+	"io/ioutil"
 	"net/http"
-	"strings"
 	"unicode/utf8"
 )
 
-// 不知道为什么用不了，每次都是一同个句子
-// 存在反爬？
+type Hitokoto struct {
+	ID         int     `json:"id"`
+	UUID       string  `json:"uuid"`
+	Hitokoto   string  `json:"hitokoto"` // 一言文字内容
+	Type       string  `json:"type"`
+	From       string  `json:"from"`
+	FromWho    *string `json:"from_who"` // 可能为null，使用指针
+	Creator    string  `json:"creator"`
+	CreatorUID int     `json:"creator_uid"`
+	Reviewer   int     `json:"reviewer"`
+	CommitFrom string  `json:"commit_from"`
+	CreatedAt  string  `json:"created_at"` // 时间戳
+	Length     int     `json:"length"`
+}
 
+// GetHitokoto 获取一言
 func GetHitokoto() (string, error) {
-	url := "https://hitokoto.cn/"
+	url := "https://v1.hitokoto.cn"
+	// 发起 GET 请求
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != 200 {
-		return "", fmt.Errorf("status code error: %d %s", resp.StatusCode, resp.Status)
-	}
-
-	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	// 读取响应体
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}
 
-	var sentence, author string
-	var sentences []string
+	// 将 JSON 数据解析到结构体
+	var hitokoto Hitokoto
+	err = json.Unmarshal(body, &hitokoto)
+	if err != nil {
+		return "", err
+	}
 
-	doc.Find("div.word#hitokoto_text").Each(func(i int, s *goquery.Selection) {
-		sentence = s.Text()
-		sentences = append(sentences, sentence)
-	})
-
-	doc.Find("div.author#hitokoto_author").Each(func(i int, s *goquery.Selection) {
-		author = s.Text()
-	})
-
-	// 合并所有句子
-	fullText := strings.Join(sentences, " ")
-
-	return fullText + " - " + author, nil
+	return hitokoto.Hitokoto, nil
 }
 
 func GetDailyLove() (string, error) {

@@ -27,7 +27,10 @@ func timeDifference(birthday time.Time) string {
 func SendWeather(user data.User, accessToken string) error {
 	cst := time.FixedZone("CST", 8*3600)
 	today := time.Now().In(cst).Format("2006年01月02日")
-	sentence, err := weather.GetDailyLove()
+
+	//sentence, err := weather.GetDailyLove()
+	sentence, err := weather.GetHitokoto()
+
 	if err != nil {
 		return err
 	}

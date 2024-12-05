@@ -42,6 +42,7 @@ func waitUntilEight() {
 }
 
 func main() {
+	//solve()
 	for {
 		waitUntilEight()
 		solve()
