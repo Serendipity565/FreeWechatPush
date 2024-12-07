@@ -28,6 +28,7 @@ func solve() {
 		if err != nil {
 			fmt.Println(err)
 		}
+		time.Sleep(1 * time.Second)
 	}
 }
 
